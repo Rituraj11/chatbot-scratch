@@ -179,6 +179,9 @@
 
 </style>
 
+<?php
+ include('db-config.php');
+?>
 <body>
 	<div class="container">
 		<div class="chat_box">
