@@ -5,12 +5,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>ChatBot - Scratch</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
 <style>
-    /*
-    * Design Reference – https://codepen.io/juliepark/pen/QxWVPv
-    */
 
     /* basic */
     *,
@@ -114,11 +112,13 @@
     .body {
         flex-grow: 1;
         background-color: #eee;
+        overflow-y: scroll; 
+        height:400px;
     }
     .body .bubble {
         display: inline-block;
-        padding: 10px;
-        margin-bottom: 5px;
+        padding: 5px 40px;
+        margin-bottom: 6px;
         border-radius: 15px;
     }
     .body .bubble p {
@@ -179,9 +179,6 @@
 
 </style>
 
-<?php
- include('db-config.php');
-?>
 <body>
 	<div class="container">
 		<div class="chat_box">
@@ -191,36 +188,51 @@
 				</div>
 			</div>
 			<div class="body">
-				<div class="incoming">
-					<div class="bubble">
-						<p>Hey, Father's Day is coming up..</p>
-					</div>
-					<div class="bubble">
-						<p>What are you getting.. Oh, oops sorry dude.</p>
-					</div>
-				</div>
 				<div class="outgoing">
 					<div class="bubble lower">
-						<p>Nah, it's cool.</p>
-					</div>
-					<div class="bubble">
-						<p>Well you should get your Dad a cologne. Here smell it. Oh wait! ...</p>
+						<p>Hi Bot</p>
 					</div>
 				</div>
-				<div class="typing">
+                <div class="incoming">
 					<div class="bubble">
-						<div class="ellipsis dot_1"></div>
-						<div class="ellipsis dot_2"></div>
-						<div class="ellipsis dot_3"></div>
+						<p>Hello there Human !</p>
 					</div>
 				</div>
 			</div>
 			<div class="foot">
 				<input type="text" class="msg" placeholder="Type a message..." />
-				<button type="submit"><img class="submit_btn_icon" src="https://img.icons8.com/paper-plane" /></button>
+				<button type="submit" id="submit"><img class="submit_btn_icon" src="https://img.icons8.com/paper-plane" /></button>
 			</div>
 		</div>
 	</div>
 </body>
+
+<script>
+        $(document).ready(function(){
+            $("#submit").on("click", function(){
+                $value = $(".msg").val();
+                $msg = '<div class="outgoing"><div class="bubble"><p>'+ $value +'</p></div></div>';
+                $(".body").append($msg);
+                $(".msg").val('');
+                
+                // start ajax code
+                $.ajax({
+                    url: 'db-config.php',
+                    type: 'POST',
+                    data: 'text='+$value,
+                    success: function(result){
+                        $replay = '<div class="incoming"><div class="bubble"><p>'+ result +'</p></div></div>';
+                        $(".body").append($replay);
+                        $(".body").scrollTop($(".body")[0].scrollHeight);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+
+
 
 </html>

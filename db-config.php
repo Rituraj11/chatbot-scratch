@@ -11,7 +11,7 @@ if(! $conn){
     echo "DB connection error ".mysqli_connect_error();
 }else{
 
-    $getMesg = mysqli_real_escape_string($conn, '%$getMesg%');
+    $getMesg = mysqli_real_escape_string($conn, $_POST['text']);
 
     // query
     $check_data = "SELECT reply FROM bot WHERE questions LIKE '%$getMesg%'";
@@ -25,6 +25,8 @@ if(! $conn){
 
         $replay = $fetch_data['reply'];
         echo $replay;
+    }else{
+        echo "Sorry. Not able to understand your question";
     }
 }
 
