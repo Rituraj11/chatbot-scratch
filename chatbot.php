@@ -24,21 +24,6 @@
         font: 16px/1.2 "Roboto", sans-serif;
         color: #333;
     }
-    .blog {
-        font-size: 14px;
-        font-weight: bold;
-        text-align: center;
-        position: absolute;
-        bottom: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1;
-    }
-    .alink {
-        display: inline-block;
-        text-align: center;
-        cursor: pointer;
-    }
     input[type="text"],
     button {
         padding: 4px 8px;
@@ -48,10 +33,6 @@
     button {
         background-color: transparent;
         cursor: pointer;
-    }
-    button:hover i {
-        color: #79c7c5;
-        transform: scale(1.2);
     }
 
     /* container */
@@ -84,30 +65,6 @@
         display: flex;
         align-items: center;
     }
-    .head .user {
-        display: flex;
-        align-items: center;
-        flex-grow: 1;
-    }
-    .head .user .avatar {
-        margin-right: 8px;
-    }
-    .head .user .avatar img {
-        display: block;
-        border-radius: 50%;
-    }
-    .head .bar_tool {
-        display: flex;
-    }
-    .head .bar_tool i {
-        padding: 5px;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
     /* body */
     .body {
         flex-grow: 1;
@@ -148,31 +105,6 @@
         flex-grow: 1;
     }
 
-    @keyframes bounce {
-        50% {
-            transform: translate(0, 5px);
-        }
-        100% {
-            transform: translate(0, 0);
-        }
-    }
-    .ellipsis {
-        display: inline-block;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background-color: #b7b7b7;
-    }
-    .dot_1 {
-        /* animation: name duration timing-function delay iteration-count */
-        animation: bounce 0.8s linear 0.1s infinite;
-    }
-    .dot_2 {
-        animation: bounce 0.8s linear 0.2s infinite;
-    }
-    .dot_3 {
-        animation: bounce 0.8s linear 0.3s infinite;
-    }
     .submit_btn_icon{
         max-height: 23px;
     }
