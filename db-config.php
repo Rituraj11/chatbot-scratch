@@ -12,7 +12,7 @@ if(! $conn){
 }else{
 
     $getMesg = mysqli_real_escape_string($conn, $_POST['text']);
-
+    
     // query
     $check_data = "SELECT reply FROM bot WHERE questions LIKE '%$getMesg%'";
 

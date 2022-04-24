@@ -75,7 +75,7 @@
     .body .bubble {
         display: inline-block;
         padding: 5px 40px;
-        margin-bottom: 6px;
+        margin-bottom: 10px;
         border-radius: 15px;
     }
     .body .bubble p {
@@ -86,6 +86,7 @@
     }
     .body .incoming {
         text-align: left;
+        max-width: 300px;
     }
     .body .incoming .bubble {
         background-color: #b2b2b2;
@@ -95,6 +96,7 @@
     }
     .body .outgoing .bubble {
         background-color: #79c7c5;
+        max-width: 300px;
     }
 
     /* foot */
@@ -143,24 +145,29 @@
         $(document).ready(function(){
             $("#submit").on("click", function(){
                 $value = $(".msg").val();
-                $msg = '<div class="outgoing"><div class="bubble"><p>'+ $value +'</p></div></div>';
-                $(".body").append($msg);
-                $(".msg").val('');
-                
-                // start ajax code
-                $.ajax({
-                    url: 'db-config.php',
-                    type: 'POST',
-                    data: 'text='+$value,
-                    success: function(result){
-                        $replay = '<div class="incoming"><div class="bubble"><p>'+ result +'</p></div></div>';
-                        $(".body").append($replay);
-                        $(".body").scrollTop($(".body")[0].scrollHeight);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
+
+                if($value == ''){
+                    alert('Enter any question !');
+                }else{
+                    $msg = '<div class="outgoing"><div class="bubble"><p>'+ $value +'</p></div></div>';
+                    $(".body").append($msg);
+                    $(".msg").val('');
+                    
+                    // start ajax code
+                    $.ajax({
+                        url: 'db-config.php',
+                        type: 'POST',
+                        data: 'text='+$value,
+                        success: function(result){
+                            $replay = '<div class="incoming"><div class="bubble"><p>'+ result +'</p></div></div>';
+                            $(".body").append($replay);
+                            $(".body").scrollTop($(".body")[0].scrollHeight);
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                }
             });
         });
 </script>
