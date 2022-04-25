@@ -1,7 +1,7 @@
 # Chatbot-Scratch
 ### Chatbot application in HTML, CSS, PHP and JQuery
 
-### Tidio chatbot system is used for integration
+### [Tidio](https://www.tidio.com/) chatbot system is used for integration
 
 ### Some pre-set questions for the bot
 
